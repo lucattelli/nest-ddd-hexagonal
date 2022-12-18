@@ -3,12 +3,14 @@ import { CreateUpcomingPolicyCommandHandler } from 'src/application/commands/cre
 import { PolicyRepositoryPostgressAdapter } from '../adapters/policy-repository-postgres-adapter';
 import { PolicyCommandController } from './policy-command.controller';
 
+const appServiceProvider = {
+  provide: 'PolicyRepositoryPort',
+  useClass: PolicyRepositoryPostgressAdapter,
+};
+
 @Module({
   imports: [],
   controllers: [PolicyCommandController],
-  providers: [
-    PolicyRepositoryPostgressAdapter,
-    CreateUpcomingPolicyCommandHandler,
-  ],
+  providers: [CreateUpcomingPolicyCommandHandler, appServiceProvider],
 })
 export class ControllersModule {}

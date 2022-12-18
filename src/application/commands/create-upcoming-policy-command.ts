@@ -7,6 +7,7 @@ import {
 } from './util';
 import { v4 as generateUuidV4 } from 'uuid';
 import { PolicyRepositoryPort } from '../ports';
+import { Inject } from '@nestjs/common';
 
 export enum PolicyCommandPolicyType {
   COMMERCIAL_PACKAGE = 'COMMERCIAL_PACKAGE',
@@ -33,7 +34,9 @@ export class CreateUpcomingPolicyCommandHandler
 {
   private readonly policyRepository: PolicyRepositoryPort;
 
-  public constructor(policyRepository: PolicyRepositoryPort) {
+  public constructor(
+    @Inject('PolicyRepositoryPort') policyRepository: PolicyRepositoryPort,
+  ) {
     this.policyRepository = policyRepository;
   }
 
