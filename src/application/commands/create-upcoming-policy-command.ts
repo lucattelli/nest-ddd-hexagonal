@@ -48,7 +48,6 @@ export class CreateUpcomingPolicyCommandHandler
       const response = await this.executeCommand(command);
       return response;
     } catch (e) {
-      console.error({ e });
       return {
         uuid: commandUuid,
         status: CommandStatus.ERROR,
